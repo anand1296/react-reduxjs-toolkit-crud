@@ -4,15 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import Product from "./../components/Product/Product";
 import { __Product } from "../store/products/constants";
 import "../components/Product/Product.css";
-import { RootState } from "../store/store";
-import { Dispatch } from "redux";
+import { AppDispatch, RootState } from "../store/store";
 import { fetchProducts } from "../store/products/slice";
 
 const ProductList = () => {
-  const products: Array<__Product> = useSelector<RootState, Array<__Product>>(
-    (state) => state.productStore.products
+  const products: Array<__Product> = useSelector(
+    (state: RootState) => state.productStore.products
   );
-  const dispatch = useDispatch<Dispatch<any>>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchProducts())

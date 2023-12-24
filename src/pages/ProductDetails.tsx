@@ -1,17 +1,15 @@
-import React, { ReducerState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
 import { __ProductDetails, __ProductState } from "../store/products/constants";
-import { RootState } from "../store/store";
-import { Dispatch } from "redux";
+import { AppDispatch, RootState } from "../store/store";
 import { fetchProductById, removeSelectedProduct } from "../store/products/slice";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const dispatch = useDispatch<Dispatch<any>>();
-  const product = useSelector<RootState, __ProductDetails | null>(
-    (state) => state.productStore.selectedProduct
+  const dispatch = useDispatch<AppDispatch>();
+  const product = useSelector(
+    (state: RootState) => state.productStore.selectedProduct
   );
 
   useEffect(() => {
